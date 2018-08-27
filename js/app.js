@@ -25,6 +25,24 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+// PLAYER CLASS
+// CONSTRUCTOR
+// CLASS PROPERTIES
+    // X POS
+    // Y POS
+    // PLAYER IMAGE
+// CLASS METHODS
+    // UPDATE POSITION
+    // CHECK IF A HIT
+        // DID PLAYER HIT ENEMY
+    // CHECK IF PLAYER WINS
+        // DID PLAYER EACH END ROW
+    // RENDER
+        // DRAW PLAYER IMAGE AT CURRENT X AND Y POSITION
+    // KEEP TRACK OF KEYBOARD EVENTS
+        // UPDATE PLAYERS X AND Y ACCORDING TO KEYED EVENT
+    // REST PLAYER
+        // SET X AND Y TO THE STARTING X AND Y POSITION
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
