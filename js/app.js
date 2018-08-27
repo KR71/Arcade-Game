@@ -26,11 +26,15 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 // PLAYER CLASS
+class Hero {
 // CONSTRUCTOR
-// CLASS PROPERTIES
-    // X POS
-    // Y POS
-    // PLAYER IMAGE
+    constructor () {
+        // CLASS PROPERTIES
+        this.x = 0;  // X POS
+        this.y = 0; // Y POS
+        this.sprite = 'images/char-boy.png'; // PLAYER IMAGE
+    }
+
 // CLASS METHODS
     // UPDATE POSITION
     // CHECK IF A HIT
@@ -39,15 +43,18 @@ Enemy.prototype.render = function() {
         // DID PLAYER EACH END ROW
     // RENDER
         // DRAW PLAYER IMAGE AT CURRENT X AND Y POSITION
+    render () {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
     // KEEP TRACK OF KEYBOARD EVENTS
         // UPDATE PLAYERS X AND Y ACCORDING TO KEYED EVENT
     // REST PLAYER
         // SET X AND Y TO THE STARTING X AND Y POSITION
-
+}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
+const player = new Hero();
 
 
 // This listens for key presses and sends the keys to your
