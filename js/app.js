@@ -3,6 +3,10 @@ var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
+    this.x = 0;  // STARTING X POS
+    this.y = 0; // STARTING Y POS
+    this.upDown = 101; // HEIGHT OF ONE TILE
+
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -14,6 +18,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    // IF ENEMY IS STILL ON SCREEN
+    if(this.x < this.upDown * 4) {
+        // MOVE FORWARD
+        // MOVE X WAY BY SPEED OF * DT
+        this.x += 20 * dt;
+    }
+
+        // ELSE
+            // RESET POSITION START
 };
 
 // Draw the enemy on the screen, required method for game
@@ -30,8 +44,8 @@ class Hero {
 // CONSTRUCTOR
     constructor () {
         // CLASS PROPERTIES
-        this.upDown = 101;
-        this.leftRight = 83;
+        this.upDown = 101; // HEIGHT OF ONE TILE
+        this.leftRight = 83; // LENGTH OF ONE TILE
         this.startingX = this.upDown * 2;
         this.startingY = this.leftRight * 5;
         this.x = this.startingX;  // STARTING X POS
@@ -82,7 +96,13 @@ class Hero {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+
+//HAD TO CREATE A player variable CLASS TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const player = new Hero();
+const baddy = new Enemy();
+//HAD TO CREATE AN allEnemies ARRAY TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
+const allEnemies = [];
+allEnemies.push(baddy);
 
 
 // This listens for key presses and sends the keys to your
