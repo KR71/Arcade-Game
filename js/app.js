@@ -30,8 +30,12 @@ class Hero {
 // CONSTRUCTOR
     constructor () {
         // CLASS PROPERTIES
-        this.x = 0;  // X POS
-        this.y = 0; // Y POS
+        this.upDown = 101;
+        this.leftRight = 83;
+        this.startingX = this.upDown * 2;
+        this.startingY = this.leftRight * 5;
+        this.x = this.startingX;  // STARTING X POS
+        this.y = this.startingY; // STARTING Y POS
         this.sprite = 'images/char-boy.png'; // PLAYER IMAGE
     }
 
@@ -48,6 +52,30 @@ class Hero {
     }
     // KEEP TRACK OF KEYBOARD EVENTS
         // UPDATE PLAYERS X AND Y ACCORDING TO KEYED EVENT
+    handleInput(input) {
+        switch (input) {
+            case 'left':
+              if(this.x > 0) {
+                this.x -= this.upDown;
+              }
+                break;
+            case 'up':
+              if(this.y > this.leftRight) {
+                 this.y -= this.leftRight;
+              }
+              break;
+            case 'right':
+               if(this.x < this.upDown * 4) {
+                  this.x += this.upDown;
+               }
+                 break;
+            case 'down':
+                if(this.y < this.leftRight * 4) {
+                    this.y += this.leftRight;
+                }
+                break;
+        }
+    }
     // REST PLAYER
         // SET X AND Y TO THE STARTING X AND Y POSITION
 }
