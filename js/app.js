@@ -1,10 +1,11 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
-    this.x = 0;  // STARTING X POS
-    this.y = 0; // STARTING Y POS
+    this.x = x;  // STARTING X POS
+    this.y = y + 60; // STARTING Y POS
+    this.speed = speed;
     this.upDown = 101; // HEIGHT OF ONE TILE
 
     // The image/sprite for our enemies, this uses
@@ -20,14 +21,18 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     // IF ENEMY IS STILL ON SCREEN
-    if(this.x < this.upDown * 4) {
+    if(this.x < this.upDown * 5) {
         // MOVE FORWARD
         // MOVE X WAY BY SPEED OF * DT
-        this.x += 20 * dt;
-    }
+        this.x += this.speed * dt;
+    } else {
 
         // ELSE
-            // RESET POSITION START
+        // RESET POSITION START OFF SCREEN NOTICE THE MINUS SO THIS LESS THAN 101
+        this.x = -this.upDown;
+    }
+
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -47,7 +52,7 @@ class Hero {
         this.upDown = 101; // HEIGHT OF ONE TILE
         this.leftRight = 83; // LENGTH OF ONE TILE
         this.startingX = this.upDown * 2;
-        this.startingY = this.leftRight * 5;
+        this.startingY = (this.leftRight * 4) + 60;
         this.x = this.startingX;  // STARTING X POS
         this.y = this.startingY; // STARTING Y POS
         this.sprite = 'images/char-boy.png'; // PLAYER IMAGE
@@ -55,7 +60,16 @@ class Hero {
 
 // CLASS METHODS
     // UPDATE POSITION
-    // CHECK IF A HIT
+
+    update () {
+        for(let enemy of allEnemies) {
+            // CHECK IF A HIT
+            if(this.y === enemy.y) {
+                console.log('same row');
+            }
+                console.log(this.y,enemy.y)
+        }
+    }
         // DID PLAYER HIT ENEMY
     // CHECK IF PLAYER WINS
         // DID PLAYER EACH END ROW
@@ -66,6 +80,7 @@ class Hero {
     }
     // KEEP TRACK OF KEYBOARD EVENTS
         // UPDATE PLAYERS X AND Y ACCORDING TO KEYED EVENT
+       // AND CHECK PLAYER IS WITHIN THE GAME CANVAS
     handleInput(input) {
         switch (input) {
             case 'left':
@@ -99,10 +114,15 @@ class Hero {
 
 //HAD TO CREATE A player variable CLASS TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const player = new Hero();
-const baddy = new Enemy();
+const baddy5 = new Enemy(-101, 0, 300);
+const baddy = new Enemy((-101*2.5), 0, 200);
+const baddy1 = new Enemy(-101*2.5, 83, 200);
+const baddy2 = new Enemy(-101, 166, 300);
+const baddy3 = new Enemy((-101*2.5), 83, 300);
+const baddy4 = new Enemy((-101*10), 166, 200);
 //HAD TO CREATE AN allEnemies ARRAY TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const allEnemies = [];
-allEnemies.push(baddy);
+allEnemies.push(baddy,baddy1, baddy2, baddy3,baddy4,baddy5);
 
 
 // This listens for key presses and sends the keys to your
