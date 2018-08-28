@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x,y, speed) {
+let Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -63,16 +63,17 @@ class Hero {
 
     update () {
         for(let enemy of allEnemies) {
-            // CHECK IF A HIT
-            if(this.y === enemy.y) {
-                console.log('same row');
+            // CHECK IF A HIT - ADDED /2 SO HIT REGISTERS AT RIGHT TIME
+            if(this.y === enemy.y && (enemy.x + enemy.upDown/2 > this.x && enemy.x < this.x + this.upDown/2)) {
+                //console.log('HIT!');
+                this.reset();
             }
-                console.log(this.y,enemy.y)
+
         }
     }
-        // DID PLAYER HIT ENEMY
+
     // CHECK IF PLAYER WINS
-        // DID PLAYER EACH END ROW
+        // DID PLAYER REACH END ROW
     // RENDER
         // DRAW PLAYER IMAGE AT CURRENT X AND Y POSITION
     render () {
@@ -87,7 +88,7 @@ class Hero {
               if(this.x > 0) {
                 this.x -= this.upDown;
               }
-                break;
+              break;
             case 'up':
               if(this.y > this.leftRight) {
                  this.y -= this.leftRight;
@@ -97,29 +98,34 @@ class Hero {
                if(this.x < this.upDown * 4) {
                   this.x += this.upDown;
                }
-                 break;
+               break;
             case 'down':
-                if(this.y < this.leftRight * 4) {
+               if(this.y < this.leftRight * 4) {
                     this.y += this.leftRight;
-                }
-                break;
+               }
+               break;
         }
     }
     // REST PLAYER
         // SET X AND Y TO THE STARTING X AND Y POSITION
+    reset () {
+        this.y = this.startingY;
+        this.x = this.startingY;
+    }
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
 //HAD TO CREATE A player variable CLASS TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
+// DIFFERENT X AND Y NUMBERS TO CREATE A LITTLE RANDOMNESS, AND SPEED FOR 3RD PARAM
 const player = new Hero();
-const baddy5 = new Enemy(-101, 0, 300);
 const baddy = new Enemy((-101*2.5), 0, 200);
-const baddy1 = new Enemy(-101*2.5, 83, 200);
-const baddy2 = new Enemy(-101, 166, 300);
-const baddy3 = new Enemy((-101*2.5), 83, 300);
+const baddy1 = new Enemy(-101*2.5, 83, 300);
+const baddy2 = new Enemy(-101, 166, 200);
+const baddy3 = new Enemy((-101*2.5), 83, 400);
 const baddy4 = new Enemy((-101*10), 166, 200);
+const baddy5 = new Enemy(-101, 0, 300);
 //HAD TO CREATE AN allEnemies ARRAY TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const allEnemies = [];
 allEnemies.push(baddy,baddy1, baddy2, baddy3,baddy4,baddy5);
