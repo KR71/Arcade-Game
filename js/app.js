@@ -56,6 +56,7 @@ class Hero {
         this.x = this.startingX;  // STARTING X POS
         this.y = this.startingY; // STARTING Y POS
         this.sprite = 'images/char-boy.png'; // PLAYER IMAGE
+        this.winGame = false;
     }
 
 // CLASS METHODS
@@ -70,10 +71,17 @@ class Hero {
             }
 
         }
+        // CHECK IF PLAYER WINS
+        // DID PLAYER REACH END ROW
+        // CHECK IF PLAYERS Y PROPERTY IS = THE TOP OF THE GRID 0 + THE CENTERING OFFSET OF 60px
+        if(this.y === 60) {
+            //console.log('win!!');
+            this.winGame = true;
+
+        }
     }
 
-    // CHECK IF PLAYER WINS
-        // DID PLAYER REACH END ROW
+
     // RENDER
         // DRAW PLAYER IMAGE AT CURRENT X AND Y POSITION
     render () {

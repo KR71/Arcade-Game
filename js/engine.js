@@ -22,7 +22,8 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        mainGameId;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,7 +56,16 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        //LOGIC HERE FOR IF REACH THE SIDE WITHOUT GETTING HIT
+        if (player.winGame === true) {
+            //console.log('GAME OVER!')
+            //THIS CANCEL'S RUNNING THE REQUEST FRAME FUNCTION IF PLAYER WINS BY PASSING THE NEXT FRAME AS AN ARGUMENT AND SO CANCELLING IT
+            win.cancelAnimationFrame(mainGameId);
+        } else {
+            // THIS ELSE REQUESTS NEXT FRAME ALL THE WHILE THE PLAYER HASN'T WON
+            mainGameId = win.requestAnimationFrame(main);
+        }
+
     }
 
     /* This function does some initial setup that should only occur once,
