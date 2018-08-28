@@ -1,3 +1,38 @@
 body {
     text-align: center;
 }
+
+.modal_gameOver {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.438);
+}
+
+.modal_body {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -157%);
+}
+
+.modal_heading {
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.replay_button {
+    width: 75px;
+    height:75px;
+    margin-top: 100px;
+    color:black;
+    background-color: lawngreen;
+    text-align: center;
+}
