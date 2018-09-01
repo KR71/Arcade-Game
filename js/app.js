@@ -75,6 +75,7 @@ class Hero {
         // DID PLAYER REACH END ROW
         // CHECK IF PLAYERS Y PROPERTY IS = THE TOP OF THE GRID 0 + THE CENTERING OFFSET OF 60px
         if(this.y === 60) {
+
             //console.log('win!!');
             this.winGame = true;
 
@@ -118,7 +119,7 @@ class Hero {
         // SET X AND Y TO THE STARTING X AND Y POSITION
     reset () {
         this.y = this.startingY;
-        this.x = this.startingY;
+        this.x = this.startingX;
     }
 }
 // Now instantiate your objects.
@@ -128,11 +129,11 @@ class Hero {
 //HAD TO CREATE A player variable CLASS TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 // DIFFERENT X AND Y NUMBERS TO CREATE A LITTLE RANDOMNESS, AND SPEED FOR 3RD PARAM
 const player = new Hero();
-const baddy = new Enemy((-101*2.5), 0, 200);
-const baddy1 = new Enemy(-101*2.5, 83, 300);
-const baddy2 = new Enemy(-101, 166, 200);
+const baddy = new Enemy((-101*2.5), 0, 300);
+const baddy1 = new Enemy((-101), 83, 300);
+const baddy2 = new Enemy(-101, 166, 400);
 const baddy3 = new Enemy((-101*2.5), 83, 400);
-const baddy4 = new Enemy((-101*10), 166, 200);
+const baddy4 = new Enemy((-101*2.5), 166, 200);
 const baddy5 = new Enemy(-101, 0, 300);
 //HAD TO CREATE AN allEnemies ARRAY TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const allEnemies = [];

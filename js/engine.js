@@ -25,6 +25,16 @@ var Engine = (function(global) {
         lastTime,
         mainGameId;
 
+    const modal = document.querySelector('.modal_gameOver');
+    const replay = document.querySelector('.replay_button');
+
+    replay.addEventListener('click', function () {
+       modal.classList.toggle('hide');
+       player.reset();
+       player.winGame = false;
+       win.requestAnimationFrame(main);
+    });
+
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
@@ -61,6 +71,7 @@ var Engine = (function(global) {
             //console.log('GAME OVER!')
             //THIS CANCEL'S RUNNING THE REQUEST FRAME FUNCTION IF PLAYER WINS BY PASSING THE NEXT FRAME AS AN ARGUMENT AND SO CANCELLING IT
             win.cancelAnimationFrame(mainGameId);
+            modal.classList.toggle('hide');
         } else {
             // THIS ELSE REQUESTS NEXT FRAME ALL THE WHILE THE PLAYER HASN'T WON
             mainGameId = win.requestAnimationFrame(main);
