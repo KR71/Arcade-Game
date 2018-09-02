@@ -1,39 +1,33 @@
 // Enemies our player must avoid
-let Enemy = function(x,y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    this.x = x;  // STARTING X POS
-    this.y = y + 60; // STARTING Y POS
-    this.speed = speed;
-    this.upDown = 101; // HEIGHT OF ONE TILE
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
-    // IF ENEMY IS STILL ON SCREEN
-    if(this.x < this.upDown * 5) {
-        // MOVE FORWARD
-        // MOVE X WAY BY SPEED OF * DT
-        this.x += this.speed * dt;
-    } else {
-
-        // ELSE
-        // RESET POSITION START OFF SCREEN NOTICE THE MINUS SO THIS LESS THAN 101
-        this.x = -this.upDown;
+class Enemy {
+    constructor(x, y, speed) {
+        this.x = x;
+        this.y = y + 60;
+        this.speed = speed;
+        this.upDown = 101;
+        this.sprite = "images/enemy-bug.png";
     }
 
+    update(dt, player) {
+        if (this.x < this.upDown * 5) {
+            this.x += this.speed * dt;
+        } else {
+            this.x = -this.upDown;
+        }
 
-};
+        if (
+            player.y === this.y &&
+            (this.x + this.upDown / 2 > player.x &&
+                this.x < player.x + player.upDown / 2)
+        ) {
+            player.reset();
+        }
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
