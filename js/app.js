@@ -120,10 +120,10 @@ class Hero {
 // DIFFERENT X AND Y NUMBERS TO CREATE A LITTLE RANDOMNESS, AND SPEED FOR 3RD PARAM
 const player = new Hero();
 const baddy = new Enemy((-101*2.5), 0, 400);
-const baddy1 = new Enemy((-101*2.5), 83, 200);
-const baddy2 = new Enemy(-101, 166, 400);
-const baddy3 = new Enemy((-101*2.5), 83, 200);
-const baddy4 = new Enemy(-101, 166, 200);
+const baddy1 = new Enemy((-101*2.5), 83, 100);
+const baddy2 = new Enemy(-101, 83, 400);
+const baddy3 = new Enemy((-101*2.5), 166, 200);
+const baddy4 = new Enemy(-101, 166, 100);
 const baddy5 = new Enemy(-101, 0, 200);
 //HAD TO CREATE AN allEnemies ARRAY TO MATCH FUNCTIONS IN ENGINE JS ALREADY PROVIDED
 const allEnemies = [];
